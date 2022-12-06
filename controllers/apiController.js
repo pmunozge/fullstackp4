@@ -24,6 +24,21 @@ function joinRoom(request, response){
 
     response.json(rooms);
 }
+
+
+function leaveRoom(request,(response){
+    const { user } = request.params;
+    const { room } = request.params;
+
+    if(rooms[room]['player1']=="user")
+    rooms[room]['player1']="";
+    else  if(rooms[room]['player2']=="user")
+        rooms[room]['player2']="";
+
+
+
+
+}
   
   exports.getSalas = getSalas;
   exports.joinRoom = joinRoom;
