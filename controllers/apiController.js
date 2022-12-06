@@ -14,8 +14,10 @@ function joinRoom(request, response){
     const { user } = request.params;
     const { room } = request.params;
 
-
-    rooms[1]['player1']=user;
+    if(rooms[room]['player1']=="")
+        rooms[room]['player1']=user;
+        else  if(rooms[room]['player2']=="")
+            rooms[room]['player2']=user;
     
     
     //room[room].setPlayer1(player)
