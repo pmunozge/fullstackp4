@@ -26,7 +26,7 @@ function joinRoom(request, response){
 }
 
 
-function leaveRoom(request,(response){
+function leaveRoom(request,response){
     const { user } = request.params;
     const { room } = request.params;
 
