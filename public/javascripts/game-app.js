@@ -59,7 +59,6 @@ function drop(ev) {
     var data = ev.dataTransfer.getData("text");
     if (ev.target.id != "user-name") {
         //fetch('http://127.0.0.1:3000/apiSalas/join/'+'pablo/2', {
-            let rN =ev.target.id.replace("room","");
             //srN = rN.replace("room","")      
             fetch('http://127.0.0.1:3000/apiSalas/join/'+ user.username + '/'+ ev.target.id.replace("room",""), {
             method: 'PUT'}).then(response => {
@@ -108,8 +107,10 @@ function drop(ev) {
 */
 function getOutRoom(room, userName) {
     //fetch('/disconnect?room=' + room + '&user=' + userName).then(response => {
-        fetch('http://127.0.0.1:3000/apiSalas/leave/'+'pablo/2', {
-            method: 'PUT'}).then(response => {
+        //fetch('http://127.0.0.1:3000/apiSalas/leave/'+'pablo/2', {
+            //console.log('http://127.0.0.1:3000/apiSalas/leave/'+ user.username + '/'+ room.replace("room",""))
+            fetch('http://127.0.0.1:3000/apiSalas/leave/'+ user.username + '/'+room.replace("room",""), {
+            method: 'GET'}).then(response => {
         //if (response.ok) {
             if (true) {
             document.getElementById("alert-text").innerHTML = 'Correctly disconnected';
