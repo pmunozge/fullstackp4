@@ -58,8 +58,14 @@ function entrar(id) {
 function drop(ev) {
     var data = ev.dataTransfer.getData("text");
     if (ev.target.id != "user-name") {
-        fetch('/ocupation?room=' + ev.target.id + '&user=' + user.username).then(response => {
-            if (response.ok) {
+        //fetch('http://127.0.0.1:3000/apiSalas/join/'+'pablo/2', {
+            let rN =ev.target.id.replace("room","");
+            //srN = rN.replace("room","")      
+            fetch('http://127.0.0.1:3000/apiSalas/join/'+ user.username + '/'+ ev.target.id.replace("room",""), {
+            method: 'PUT'}).then(response => {
+        //fetch('/ocupation?room=' + ev.target.id + '&user=' + user.username).then(response => {
+            //if (response.ok) {
+                if (response.ok) {
                 document.getElementById("alert-text").innerHTML = 'Welcome to the room';
                 $("#myModal").modal("show");
                 var onRoom = ev.target.id;
@@ -75,9 +81,9 @@ function drop(ev) {
                 document.getElementById(ev.target.id + "f").innerHTML = '<a href="javascript:entrar(\'' + ev.target.id + '\')">Entrar</a>';
                 document.getElementById("avatarChoose").setAttribute('draggable', false);
             }
-            /**
-            * user is alrealdy in other room
-            */
+            
+            //User is alrealdy in other room
+            
             else if (response.status == 201) {
                 document.getElementById("alert-text").innerHTML = 'You are in other room. Disconnect first';
                 $("#myModal").modal("show");
@@ -101,8 +107,11 @@ function drop(ev) {
 * @param  {User} user user logged in
 */
 function getOutRoom(room, userName) {
-    fetch('/disconnect?room=' + room + '&user=' + userName).then(response => {
-        if (response.ok) {
+    //fetch('/disconnect?room=' + room + '&user=' + userName).then(response => {
+        fetch('http://127.0.0.1:3000/apiSalas/leave/'+'pablo/2', {
+            method: 'PUT'}).then(response => {
+        //if (response.ok) {
+            if (true) {
             document.getElementById("alert-text").innerHTML = 'Correctly disconnected';
             $("#myModal").modal("show");
             user[room] = false;

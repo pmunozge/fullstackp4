@@ -5,7 +5,7 @@ var {renderGame} = require("../controllers/gameController");
 var {login, logOut} = require("../controllers/loginController")
 var {register, validatedRegister} = require("../controllers/registerController");
 var { gameApp, ocupation, ocupationcheck, disconnect } = require("../controllers/gameAppController");
-var {getSalas,joinRoom,leaveRoom} = require("../controllers/apiController");
+var {getSalas,joinRoom,leaveRoom, getOnlyRoom} = require("../controllers/apiController");
 
 
 /* GET home page. */
@@ -20,6 +20,7 @@ router.get('/ocupationcheck', ocupationcheck)
 router.get('/disconnect', disconnect)
 router.get('/ocupation', ocupation)
 router.get('/apiSalas/getRooms', getSalas)
+router.get('/apiSalas/getRoom/:room', getOnlyRoom)
 router.put('/apiSalas/join/:user/:room', joinRoom)
 router.get('/apiSalas/leave/:user/:room', leaveRoom)
 

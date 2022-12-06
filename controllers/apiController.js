@@ -4,8 +4,15 @@ const { rooms } = require('../models/RoomData')
 
 function getSalas(request, response) {
     
-   
     response.json(rooms);
+
+  }
+
+function getOnlyRoom(request, response) {
+    const { room } = request.params;
+    let rN = (parseInt(room)-1)
+    
+    response.json(rooms[rN]);
 
   }
 
@@ -44,5 +51,6 @@ function leaveRoom(request,response){
 }
   
   exports.getSalas = getSalas;
+  exports.getOnlyRoom = getOnlyRoom;
   exports.joinRoom = joinRoom;
   exports.leaveRoom = leaveRoom;
