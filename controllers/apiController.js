@@ -14,10 +14,12 @@ function joinRoom(request, response){
     const { user } = request.params;
     const { room } = request.params;
 
-    if(rooms[room]['player1']=="")
-        rooms[room]['player1']=user;
-        else  if(rooms[room]['player2']=="")
-            rooms[room]['player2']=user;
+    let rN = (parseInt(room)-1)
+
+    if(rooms[rN]['player1']=="")
+        rooms[rN]['player1']=user;
+        else  if(rooms[rN]['player2']=="")
+            rooms[rN]['player2']=user;
     
     
     //room[room].setPlayer1(player)
@@ -30,15 +32,17 @@ function leaveRoom(request,response){
     const { user } = request.params;
     const { room } = request.params;
 
-    if(rooms[room]['player1']=="user")
-    rooms[room]['player1']="";
-    else  if(rooms[room]['player2']=="user")
-        rooms[room]['player2']="";
+    let rN = (parseInt(room)-1)
 
+    if(rooms[rN]['player1']==user)
+    rooms[rN]['player1']="";
+    else  if(rooms[rN]['player2']==user)
+        rooms[rN]['player2']="";
 
-
+    response.json(rooms);
 
 }
   
   exports.getSalas = getSalas;
   exports.joinRoom = joinRoom;
+  exports.leaveRoom = leaveRoom;
