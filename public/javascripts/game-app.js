@@ -55,15 +55,13 @@ function entrar(id) {
 * Manage the actions triggered by dropping the avatar into a room. First checks if the room is full and alert the user, if the room has space then the room is selected.
 * @param  {Event} ev event that trigger the function
 */
+/*
 function drop(ev) {
     var data = ev.dataTransfer.getData("text");
     if (ev.target.id != "user-name") {
-        //fetch('http://127.0.0.1:3000/apiSalas/join/'+'pablo/2', {
-            //srN = rN.replace("room","")      
             fetch('http://127.0.0.1:3000/apiSalas/join/'+ user.username + '/'+ ev.target.id.replace("room",""), {
             method: 'PUT'}).then(response => {
         //fetch('/ocupation?room=' + ev.target.id + '&user=' + user.username).then(response => {
-            //if (response.ok) {
                 if (response.ok) {
                 document.getElementById("alert-text").innerHTML = 'Welcome to the room';
                 $("#myModal").modal("show");
@@ -98,7 +96,43 @@ function drop(ev) {
         nodeCopy.id = "newId"
         ev.target.appendChild(nodeCopy);
     }
+}*/
+/*function drop(ev) {
+    var data = ev.dataTransfer.getData("text");
+    if (ev.target.id != "user-name") {
+            $.ajax({
+                url: '/apiSalas/join/'+ user.username + '/'+ ev.target.id.replace("room",""),
+                method: 'PUT',
+                data:{
+                    
+                },
+                succes: function (response) {
+                    console.log(response);
+                }
+            })
+    }
+           
+}*/
+function drop(ev) {
+    var data = ev.dataTransfer.getData("text");
+    if (ev.target.id != "user-name") {
+            $.ajax({
+                url: '/apiSalas/join/'+ user.username + '/'+ ev.target.id.replace("room",""),
+                method: 'PUT',
+                data:{
+                    
+                },
+                success: function (response) {
+                    console.log(response);
+                    let rooms = JSON.parse(response);
+                    console.log("JASONIFICADO"+JSON.stringify(rooms));
+                }
+            })
+    }
+
+
 }
+
 
 /**
 * Manage the manages the exit of the user's game room . Delete the room selected by the user.

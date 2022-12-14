@@ -18,6 +18,7 @@ function getOnlyRoom(request, response) {
 
 function joinRoom(request, response){
 
+    
     const { user } = request.params;
     const { room } = request.params;
 
@@ -31,7 +32,7 @@ function joinRoom(request, response){
     
     //room[room].setPlayer1(player)
 
-    response.json(rooms);
+    response.json(JSON.stringify(rooms));
 }
 
 
